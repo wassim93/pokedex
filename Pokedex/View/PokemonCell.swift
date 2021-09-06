@@ -6,18 +6,31 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct PokemonCell: View {
+    
+    let pokemon :Pokemon
+    let pvModel :PokemonViewModel
+    let backgroudColor:Color
+    
+    
+    init(pokemon:Pokemon , viewModel :PokemonViewModel) {
+        self.pokemon = pokemon
+        self.pvModel =  viewModel
+        self.backgroudColor =  Color(pvModel.backgroundColor(forType: pokemon.type))
+        
+    }
     var body: some View {
         ZStack{
             VStack(alignment: .leading){
-                Text("Bulbasur")
+                Text(pokemon.name.capitalized)
                     .font(.headline)
                     .foregroundColor(.white)
                     .padding(.top,4)
-                    .padding(.leading)
+                    .padding(.leading,10)
                 HStack{
-                    Text("poison")
+                    Text(pokemon.type)
                         .font(.subheadline).bold()
                         .foregroundColor(.white)
                         .padding(.horizontal,6)
@@ -28,22 +41,18 @@ struct PokemonCell: View {
                         )
                         .padding(.leading,5)
                     Spacer()
-                    Image("1")
+                    KFImage(URL(string: pokemon.imageUrl))
                         .resizable()
                         .scaledToFit()
                         .frame(width: 60, height: 70)
                         .padding([.bottom,.trailing],4)
                 }.frame(maxWidth: .infinity)
             }
-        }.background(Color.green)
+        }.background(backgroudColor)
         .cornerRadius(12)
-        .shadow(color: .green, radius: 6, x: 0.0, y: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/)
+        .shadow(color: backgroudColor, radius: 6, x: 0.0, y: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/)
         .padding([.leading,.trailing],8)
     }
 }
 
-struct PokemonCell_Previews: PreviewProvider {
-    static var previews: some View {
-        PokemonCell()
-    }
-}
+
