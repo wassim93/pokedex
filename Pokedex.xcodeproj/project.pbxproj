@@ -15,6 +15,7 @@
 		CF3D89CB26DC4D5D00EEE55E /* PokedexUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3D89CA26DC4D5D00EEE55E /* PokedexUITests.swift */; };
 		CF3D89DC26DC51C900EEE55E /* PokemonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3D89DB26DC51C900EEE55E /* PokemonCell.swift */; };
 		CF3D89DE26DC566400EEE55E /* PokedexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3D89DD26DC566400EEE55E /* PokedexView.swift */; };
+		CF44A27526E625800059F01E /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF44A27426E625800059F01E /* DetailView.swift */; };
 		CFE9007626E5831100CE3049 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE9007526E5831100CE3049 /* Pokemon.swift */; };
 		CFE9007826E586E500CE3049 /* PokemonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE9007726E586E500CE3049 /* PokemonViewModel.swift */; };
 		CFE9007B26E58DF700CE3049 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CFE9007A26E58DF700CE3049 /* Kingfisher */; };
@@ -52,6 +53,7 @@
 		CF3D89CC26DC4D5D00EEE55E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF3D89DB26DC51C900EEE55E /* PokemonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCell.swift; sourceTree = "<group>"; };
 		CF3D89DD26DC566400EEE55E /* PokedexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexView.swift; sourceTree = "<group>"; };
+		CF44A27426E625800059F01E /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		CFE9007526E5831100CE3049 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		CFE9007726E586E500CE3049 /* PokemonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,6 +150,7 @@
 			children = (
 				CF3D89DB26DC51C900EEE55E /* PokemonCell.swift */,
 				CF3D89DD26DC566400EEE55E /* PokedexView.swift */,
+				CF44A27426E625800059F01E /* DetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				CFE9007626E5831100CE3049 /* Pokemon.swift in Sources */,
 				CF3D89B026DC4D5C00EEE55E /* ContentView.swift in Sources */,
 				CFE9007826E586E500CE3049 /* PokemonViewModel.swift in Sources */,
+				CF44A27526E625800059F01E /* DetailView.swift in Sources */,
 				CF3D89AE26DC4D5C00EEE55E /* PokedexApp.swift in Sources */,
 				CF3D89DC26DC51C900EEE55E /* PokemonCell.swift in Sources */,
 				CF3D89DE26DC566400EEE55E /* PokedexView.swift in Sources */,

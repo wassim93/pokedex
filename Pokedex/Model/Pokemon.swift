@@ -11,7 +11,10 @@
     struct Pokemon: Codable,Identifiable {
         let id:Int
         let name,imageUrl,type:String
+        
+    
     }
+    
     
     let Mock_Pokemon:[Pokemon] = [
         .init(id: 0, name: "Bulbasur", imageUrl: "1", type: "poison"),
