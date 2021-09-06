@@ -10,13 +10,14 @@
     
     struct Pokemon: Codable,Identifiable {
         let id:Int
-        let name,imageUrl,type:String
+        let name,imageUrl,type,description:String
+        let attack,defense,weight,height:Int
         
     
     }
     
     
-    let Mock_Pokemon:[Pokemon] = [
+    /*let Mock_Pokemon:[Pokemon] = [
         .init(id: 0, name: "Bulbasur", imageUrl: "1", type: "poison"),
         .init(id: 1, name: "Venusaur", imageUrl: "1", type: "poison"),
         .init(id: 2, name: "Ivysur", imageUrl: "1", type: "poison"),
@@ -26,7 +27,7 @@
         .init(id: 6, name: "squirtle", imageUrl: "1", type: "water"),
         .init(id: 7, name: "wartortle", imageUrl: "1", type: "water"),
         .init(id: 8, name: "blastoise", imageUrl: "1", type: "water"),
-    ]
+    ]*/
     
     
     

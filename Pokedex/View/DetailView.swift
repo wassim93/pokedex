@@ -20,44 +20,130 @@ struct DetailView: View {
         self.backgroudColor =  Color(pvModel.backgroundColor(forType: pokemon.type))
         
     }
-
+    
     var body: some View {
-            ZStack{
-                backgroudColor.ignoresSafeArea()
-                VStack(alignment: .center,spacing:10){
+        ZStack{
+            backgroudColor.ignoresSafeArea()
+            VStack(alignment: .center,spacing:10){
+                
+                KFImage(URL(string: pokemon.imageUrl))
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width:170,height: 150)
+                    .padding(.top,90)
+                
+                VStack(spacing:10){
+                    Text(pokemon.name.capitalized)
+                        .padding()
+                        .font(.largeTitle)
                     
-                    KFImage(URL(string: pokemon.imageUrl))
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width:170,height: 150)
-                        .padding(.top,90)
-                    
-                    VStack(spacing:10){
-                        Text(pokemon.name.capitalized).padding(.top,5)
-                        Text(pokemon.type)
-                            .font(.subheadline).bold()
-                            .foregroundColor(.black)
-                            .padding(.horizontal,6)
-                            .padding([.top,.bottom],10)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 20)
-                                    .fill(backgroudColor.opacity(0.25))
-                            )
-                        Text(pokemon.name)
-                        Spacer()
-                    }.frame(maxWidth: .infinity,maxHeight: .infinity)
-                    .background(RoundedCorners(tl: 25, tr: 25, bl: 0, br: 0).fill(Color.white))
+                    Text(pokemon.type)
+                        .font(.headline).bold()
+                        .foregroundColor(.black)
+                        .padding(.horizontal,15)
+                        .padding([.top,.bottom],10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(backgroudColor.opacity(0.25))
+                        )
+                    Text(pokemon.description)
+                        .font(.system(size: 18))
+                        .padding([.leading,.trailing,.bottom],15)
+                    StatView()
+                    Spacer()
+                }.frame(maxWidth: .infinity,maxHeight: .infinity)
+                .background(RoundedCorners(tl: 25, tr: 25, bl: 0, br: 0).fill(Color.white))
+                
+            }.ignoresSafeArea()
+            
+        }
+    }
 
-                }.ignoresSafeArea()
+    fileprivate func StatView() -> some View {
+        var totalProgress = 100
+        if pokemon.weight > 100 {
+            totalProgress = 1000
+        }
+        return VStack{
+            HStack{
+                Text("Stats")
+                    .foregroundColor(.blue)
+                    .font(.system(size: 18))
+                    .fontWeight(.semibold)
+                    .padding(.leading)
+                Spacer()
+            }
+            HStack{
+                Text("Attack")
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .multilineTextAlignment(.center)
+                    .padding(.leading)
+                Spacer()
+                ProgressView(value:Double(pokemon.attack),total:Double(100)).frame(width:250)
+                    .progressViewStyle(LinearProgressViewStyle(tint: Color.red))
+                    .padding()
+                    .scaleEffect(x: 1, y: 4, anchor: .center)
+                    .overlay(
+                        Text(String(pokemon.attack))
+                    )
                 
             }
+            HStack{
+                Text("Defense")
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .multilineTextAlignment(.center)
+                    .padding(.leading)
+                Spacer()
+                ProgressView(value:Double(pokemon.defense),total:Double(100)).frame(width:250)
+                    .progressViewStyle(LinearProgressViewStyle(tint: Color.blue))
+                    .scaleEffect(x: 1, y: 4, anchor: .center)
+                    .padding()
+                    .overlay(
+                        Text(String(pokemon.defense))
+                    )
+            }
+            HStack{
+                Text("Weight")
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .multilineTextAlignment(.center)
+                    .padding(.leading)
+                Spacer()
+        
+                ProgressView(value:Double(pokemon.weight),total:Double(totalProgress)).frame(width:250)
+                    .progressViewStyle(LinearProgressViewStyle(tint: Color.purple))
+                    .padding()
+                    .scaleEffect(x: 1, y: 4, anchor: .center)
+                    .overlay(
+                        Text(String(pokemon.weight))
+                    )
+                
+            }
+            HStack{
+                Text("Height")
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .multilineTextAlignment(.center)
+                    .padding(.leading)
+                Spacer()
+                ProgressView(value:Double(pokemon.height),total:Double(100)).frame(width:250)
+                    .padding()
+                    .progressViewStyle(LinearProgressViewStyle(tint: Color.orange))
+                    .scaleEffect(x: 1, y: 4, anchor: .center)
+                    .overlay(
+                        Text(String(pokemon.height))
+                    )
+            }
+        }
         
     }
 }
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(pokemon: Pokemon(id: 0, name: "Bulbasur", imageUrl: "1", type: "poison"), viewModel: PokemonViewModel())
+        DetailView(pokemon: Pokemon(id: 0, name: "Bulbasur", imageUrl: "1", type: "poison",description: "Bulbasaur can be seen napping in bright sunlight. There is a seed on its back. By soaking up the sun’s rays, the seed grows progressively larger.",attack: 10,defense: 20,weight: 50,height: 30), viewModel: PokemonViewModel())
     }
 }
 
@@ -98,7 +184,7 @@ struct RoundedCorners: Shape {
         path.addArc(center: CGPoint(x: tl, y: tl), radius: tl,
                     startAngle: Angle(degrees: 180), endAngle: Angle(degrees: 270), clockwise: false)
         path.closeSubpath()
-
+        
         return path
     }
 }
