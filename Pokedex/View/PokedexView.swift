@@ -38,6 +38,8 @@ struct PokedexView: View {
                 Spacer()
                 Button(action: {
                     print("click")
+                    pvModel.sortDataByType()
+                    
                 }, label: {
                     Image(systemName: "list.bullet.indent")
                         .frame(width: 67, height: 60)

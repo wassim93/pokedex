@@ -28,6 +28,12 @@ class PokemonViewModel: ObservableObject {
         }.resume()
     }
     
+    func sortDataByType() {
+        pokemon = pokemon.sorted { (lhs, rhs) -> Bool in
+            return (lhs.type) < (rhs.type)
+        }
+    }
+    
     
     func backgroundColor(forType type:String) -> UIColor {
         switch type {
