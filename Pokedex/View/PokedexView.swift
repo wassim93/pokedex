@@ -37,7 +37,6 @@ struct PokedexView: View {
             HStack {
                 Spacer()
                 Button(action: {
-                    print("click")
                     pvModel.sortDataByType()
                     
                 }, label: {
