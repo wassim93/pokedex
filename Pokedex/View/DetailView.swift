@@ -22,43 +22,45 @@ struct DetailView: View {
     }
     
     var body: some View {
-        ZStack{
-            backgroudColor.ignoresSafeArea()
-            VStack(alignment: .center,spacing:10){
-                
-                KFImage(URL(string: pokemon.imageUrl))
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width:170,height: 150)
-                    .padding(.top,90)
-                
-                VStack(spacing:10){
-                    Text(pokemon.name.capitalized)
-                        .padding()
-                        .font(.largeTitle)
+        ScrollView{
+            ZStack{
+                backgroudColor.ignoresSafeArea()
+                VStack(alignment: .center,spacing:10){
                     
-                    Text(pokemon.type)
-                        .font(.headline).bold()
-                        .foregroundColor(.black)
-                        .padding(.horizontal,15)
-                        .padding([.top,.bottom],10)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                                .fill(backgroudColor.opacity(0.25))
-                        )
-                    Text(pokemon.description)
-                        .font(.system(size: 18))
-                        .padding([.leading,.trailing,.bottom],15)
-                    StatView()
-                    Spacer()
-                }.frame(maxWidth: .infinity,maxHeight: .infinity)
-                .background(RoundedCorners(tl: 25, tr: 25, bl: 0, br: 0).fill(Color.white))
+                    KFImage(URL(string: pokemon.imageUrl))
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width:170,height: 150)
+                        .padding(.top,90)
+                    
+                    VStack(spacing:10){
+                        Text(pokemon.name.capitalized)
+                            .padding()
+                            .font(.largeTitle)
+                        
+                        Text(pokemon.type)
+                            .font(.headline).bold()
+                            .foregroundColor(.black)
+                            .padding(.horizontal,15)
+                            .padding([.top,.bottom],10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 20)
+                                    .fill(backgroudColor.opacity(0.25))
+                            )
+                        Text(pokemon.description)
+                            .font(.system(size: 18))
+                            .padding([.leading,.trailing,.bottom],15)
+                        StatView()
+                        Spacer()
+                    }.frame(maxWidth: .infinity,maxHeight: .infinity)
+                    .background(RoundedCorners(tl: 25, tr: 25, bl: 0, br: 0).fill(Color.white))
+                    
+                }.ignoresSafeArea()
                 
-            }.ignoresSafeArea()
-            
-        }
+            }
+        }.ignoresSafeArea()
     }
-
+    
     fileprivate func StatView() -> some View {
         var totalProgress = 100
         if pokemon.weight > 100 {
@@ -79,8 +81,10 @@ struct DetailView: View {
                     .fontWeight(.semibold)
                     .multilineTextAlignment(.center)
                     .padding(.leading)
+                    .frame(width: 90,alignment: .leading)
                 Spacer()
-                ProgressView(value:Double(pokemon.attack),total:Double(100)).frame(width:250)
+                ProgressView(value:Double(pokemon.attack),total:Double(100))
+                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/ , maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .trailing)
                     .progressViewStyle(LinearProgressViewStyle(tint: Color.red))
                     .padding()
                     .scaleEffect(x: 1, y: 4, anchor: .center)
@@ -95,8 +99,10 @@ struct DetailView: View {
                     .fontWeight(.semibold)
                     .multilineTextAlignment(.center)
                     .padding(.leading)
+                    .frame(width: 90,alignment: .leading)
+                
                 Spacer()
-                ProgressView(value:Double(pokemon.defense),total:Double(100)).frame(width:250)
+                ProgressView(value:Double(pokemon.defense),total:Double(100)) .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/ , maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .trailing)
                     .progressViewStyle(LinearProgressViewStyle(tint: Color.blue))
                     .scaleEffect(x: 1, y: 4, anchor: .center)
                     .padding()
@@ -110,9 +116,13 @@ struct DetailView: View {
                     .fontWeight(.semibold)
                     .multilineTextAlignment(.center)
                     .padding(.leading)
+                    .frame(width: 90,alignment: .leading)
+                
+                
                 Spacer()
-        
-                ProgressView(value:Double(pokemon.weight),total:Double(totalProgress)).frame(width:250)
+                
+                ProgressView(value:Double(pokemon.weight),total:Double(totalProgress))
+                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/ , maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .trailing)
                     .progressViewStyle(LinearProgressViewStyle(tint: Color.purple))
                     .padding()
                     .scaleEffect(x: 1, y: 4, anchor: .center)
@@ -127,8 +137,10 @@ struct DetailView: View {
                     .fontWeight(.semibold)
                     .multilineTextAlignment(.center)
                     .padding(.leading)
+                    .frame(width: 90,alignment: .leading)
+                
                 Spacer()
-                ProgressView(value:Double(pokemon.height),total:Double(100)).frame(width:250)
+                ProgressView(value:Double(pokemon.height),total:Double(100)).frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/ , maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .trailing)
                     .padding()
                     .progressViewStyle(LinearProgressViewStyle(tint: Color.orange))
                     .scaleEffect(x: 1, y: 4, anchor: .center)
@@ -147,44 +159,3 @@ struct DetailView_Previews: PreviewProvider {
     }
 }
 
-
-
-struct RoundedCorners: Shape {
-    var tl: CGFloat = 0.0
-    var tr: CGFloat = 0.0
-    var bl: CGFloat = 0.0
-    var br: CGFloat = 0.0
-    
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        
-        let w = rect.size.width
-        let h = rect.size.height
-        
-        // Make sure we do not exceed the size of the rectangle
-        let tr = min(min(self.tr, h/2), w/2)
-        let tl = min(min(self.tl, h/2), w/2)
-        let bl = min(min(self.bl, h/2), w/2)
-        let br = min(min(self.br, h/2), w/2)
-        
-        path.move(to: CGPoint(x: w / 2.0, y: 0))
-        path.addLine(to: CGPoint(x: w - tr, y: 0))
-        path.addArc(center: CGPoint(x: w - tr, y: tr), radius: tr,
-                    startAngle: Angle(degrees: -90), endAngle: Angle(degrees: 0), clockwise: false)
-        
-        path.addLine(to: CGPoint(x: w, y: h - br))
-        path.addArc(center: CGPoint(x: w - br, y: h - br), radius: br,
-                    startAngle: Angle(degrees: 0), endAngle: Angle(degrees: 90), clockwise: false)
-        
-        path.addLine(to: CGPoint(x: bl, y: h))
-        path.addArc(center: CGPoint(x: bl, y: h - bl), radius: bl,
-                    startAngle: Angle(degrees: 90), endAngle: Angle(degrees: 180), clockwise: false)
-        
-        path.addLine(to: CGPoint(x: 0, y: tl))
-        path.addArc(center: CGPoint(x: tl, y: tl), radius: tl,
-                    startAngle: Angle(degrees: 180), endAngle: Angle(degrees: 270), clockwise: false)
-        path.closeSubpath()
-        
-        return path
-    }
-}
