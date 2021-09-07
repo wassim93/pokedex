@@ -9,7 +9,8 @@ MVVM Architecture
 Library used : Kingfisher  
 
 Screenshots: 
-![Image of listUI](https://github.com/wassim93/pokedex/blob/main/Simulator%20Screen%20Shot%20-%20iPod%20touch%20(7th%20generation)%20-%202021-09-07%20at%2002.30.16.png?raw=true)
+
+<img src="https://github.com/wassim93/pokedex/blob/main/Simulator%20Screen%20Shot%20-%20iPod%20touch%20(7th%20generation)%20-%202021-09-07%20at%2002.30.16.png" width=50% height=50%>
 
 ![Image of detailUI](https://github.com/wassim93/pokedex/blob/main/Simulator%20Screen%20Shot%20-%20iPhone%2011%20Pro%20Max%20-%202021-09-07%20at%2001.13.08.png?raw=true)
 
